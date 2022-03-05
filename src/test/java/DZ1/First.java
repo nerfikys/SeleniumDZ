@@ -75,11 +75,16 @@ public class First {
         }
         WebElement truble = driver.findElement(By.xpath("//*[@class='vue-dadata__suggestions']"));// Шаг 6.4.2
         truble.click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         { // Шаг 7
             Assert.assertEquals("Введённые данные ФИО не совпадют с ожидаемыми", "Ryzhov Oleg Romanovich", nameFolder.getAttribute("value"));
             Assert.assertEquals("Введённые данные Телефона не совпадют с ожидаемыми", "+7 (800) 555-5353", telFolder.getAttribute("value"));
             Assert.assertEquals("Введённые данные Почты не совпадют с ожидаемыми", "qwertyqwerty", emlFolder.getAttribute("value"));
-          //  Assert.assertEquals("Введённые данные Чекбокс не совпадют с ожидаемыми", true, box.isSelected());
+            Assert.assertEquals("Введённые данные Чекбокс не совпадют с ожидаемыми", "true", driver.findElement(By.xpath("//input[@data-v-973e6056='']")).getAttribute("checked"));
             Assert.assertEquals("Введённые данные не совпадют с ожидаемыми", "г Москва, проезд Черепановых, д 56 к 1, кв 20", plcFolder.getAttribute("value"));
         }
         WebElement submit = driver.findElement(By.xpath("//*[@type='submit']")); // Шаг 8
